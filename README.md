@@ -1,68 +1,70 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CoderSchool FTW - *Unit Test with TDD integrated*
 
-## Available Scripts
+Created with :blue_heart: by <a href="https://github.com/albertanguyen">Anh</a>
 
-In the project directory, you can run:
+## Required User Stories
 
-### `npm start`
+More testing integrated TDD (Test-driven development)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Time Spent and Lessons Learned
+Coder School lecture starts at 10am and ends at midnight :kissing_smiling_eyes: ...
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Describe any challenges encountered while coding under TDD cycle.
+* How to communicate to the testing utilities that I think my code was great... :cold_sweat:
+* <pre>Invariant Violation: Could not find "store" in the context of "Connect(Counter)". Either wrap the root component in a <Provider>, or pass a custom React context provider to <Provider> and the corresponding React context consumer to Connect(Counter) in connect options.</pre>I spent aproximately 6-7 hours to figure out that I probably cannot use jest or rely on npm 100% to test redux app although I received a very nice and user-centered message from npm dev team. Before jumping to the user-friendly message, with the help of my instructor, the test function has to be adjusted by <a href="https://stackoverflow.com/questions/36211739/invariant-violation-could-not-find-store-in-either-the-context-or-props-of-c"> this suggested solution from stackoverflow.</a> The issue was triggered after I installed manually jest package but was not solved even after I uninstalled it and reinstalled *node_modules*
+<pre>There might be a problem with the project dependency tree.
+It is likely not a bug in Create React App, but something you need to fix locally.
 
-### `npm test`
+The react-scripts package provided by Create React App requires a dependency:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  "jest": "24.7.1"
 
-### `npm run build`
+Don't try to install it manually: your package manager does it automatically.
+However, a different version of jest was detected higher up in the tree:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  $PATH/redux-tdd.github.io/node_modules/jest (version: 24.8.0) 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Manually installing incompatible versions is known to cause hard-to-debug issues.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
+That will permanently disable this message but you might encounter other issues.
 
-### `npm run eject`
+To fix the dependency tree, try following the steps below in the exact order:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  1. Delete package-lock.json (not package.json!) and/or yarn.lock in your project folder.
+  2. Delete node_modules in your project folder.
+  3. Remove "jest" from dependencies and/or devDependencies in the package.json file in your project folder.
+  4. Run npm install or yarn, depending on the package manager you use.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In most cases, this should be enough to fix the problem.
+If this has not helped, there are a few other things you can try:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  5. If you used npm, install yarn (http://yarnpkg.com/) and repeat the above steps with it instead.
+     This may help because npm has known issues with package hoisting which may get resolved in future versions.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  6. Check if /home/jayjay/HCMC/FSW-dev-docs/redux-tdd.github.io/node_modules/jest is outside your project directory.
+     For example, you might have accidentally installed something in your home folder.
 
-## Learn More
+  7. Try running npm ls jest in your project folder.
+     This will tell you which other package (apart from the expected react-scripts) installed jest.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If nothing else helps, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
+That would permanently disable this preflight check in case you want to proceed anyway.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+P.S. We know this message is long but please read the steps above :-) We hope you find them helpful!</pre>
 
-### Code Splitting
+## License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+    Copyright [2019] [Anh Nguyen]
 
-### Analyzing the Bundle Size
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+        http://www.apache.org/licenses/LICENSE-2.0
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
